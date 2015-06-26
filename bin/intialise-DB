@@ -1,0 +1,6 @@
+fs = require("fs");
+path = require("path");
+initDB = require("../db-scripts/initialise-es");
+configPath = path.resolve(__dirname, "..", "config", "development.json");
+config = JSON.parse(fs.readFileSync(configPath).toString());
+initDB(config);
