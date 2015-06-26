@@ -1,0 +1,9 @@
+{
+  "elasticsearch": {
+     "host": "localhost",
+      "port": "9200"
+  },
+ "web":{
+   "port": 6000
+ }
+}
