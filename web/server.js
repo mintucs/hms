@@ -16,10 +16,9 @@ var client = new elasticsearch.Client({
       id: values[0],      
         
       body: {
-                "First_Name": keys[0],
-                "Last_Name": keys[1],
-                "Email.Address": keys[2],
-                "Set_A_Password": keys[3],
+                "USERNAME ": keys[0],
+                "PASSWORD": keys[1],
+               
                
       }
     }, function (error, response) {
