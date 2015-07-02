@@ -1,19 +1,44 @@
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client({
-  host: 'localhost:9200',
-  log: 'trace'
+  host:  [
+    {
+      host: 'http://localhost:9200',
+      auth: 'user:password'
+    }
+  ],
+  log: {
+    type: 'file',
+    level: 'trace',
+    //path: '/var/log/elasticsearch.log'
+  }
 });
 
-run = function(configuration){
-    console.log("initisling es");
-}
-    client.indices.create({ index: 'myindex'},
-function (error, response) {
-  // ...
-});
+
+
+var create_promise = client.indices.create({index: "users" });
+create_promise.then(function(x) {
+    console.log(x);
+}, function(err) { console.log(err);});
+
+
+var create_promise = client.indices.putMapping({"users": {
+        "properties" : {
+            "username" : {"type" : "string",
+               "store" : true },
+               
+               "access_tokens" : { "enabled" : true, "default" : "366"},
+               
+               "tag": {
+        "type":     "string",
+        "index":    "not_analyzed"}
+    }
+        },
+        "users" : {
+        "_ttl" : { "enabled" : true, }
+    }
     
-client.indices.putMapping({ index: 'myindex'},
-function (error, response) {
-  // ...
 });
-module.exports = run
+create_promise.then(function(x) {
+    console.log(x);
+}, function(err) { console.log(err);
+});
