@@ -23,8 +23,8 @@ create_promise.then(function(x) {
 
 var create_promise = client.indices.putMapping({"users": {
         "properties" : {
-            "USERNAME {"type" : "string", "store" : true },
-               "Password" : {"type" : "string""store" : true },
+            "USERNAME": {"type": "string", "store" : true },
+               "Password" : {"type" : "string","store" : true },
                
                "access_tokens" : { "enabled" : true},
                
